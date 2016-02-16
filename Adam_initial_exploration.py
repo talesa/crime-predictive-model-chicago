@@ -107,7 +107,7 @@ max_crimes = crime_chicago_count['count'].max()
 crime_chicago_count[crime_chicago_count['count'] == max_crimes]
 
 
-# In[68]:
+# In[ ]:
 
 crime_chicago_count['count'].max()
 

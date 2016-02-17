@@ -4,3 +4,8 @@ pandas
 jupyter
 matplotlib
 statsmodels
+patsy
+bokeh
+folium
+seaborn
+geopandas

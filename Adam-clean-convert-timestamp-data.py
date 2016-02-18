@@ -8,7 +8,6 @@
 get_ipython().magic(u'matplotlib inline')
 import pandas as pd
 import numpy as np
-import pickle
 
 
 # Importing data

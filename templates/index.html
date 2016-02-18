@@ -30,11 +30,11 @@
           <div id='map-div' class="col-md-10" style="height: 550px;">{% block content %}{% endblock content %}</div>
           <div class="col-md-2 panel panel-default">
             <div class="panel-body">
-              <div class="panel-heading">Options</div>
+              <h5 class="panel-heading">Options</h5>
               <form>
                 {% for map in maps %}
                   <div class="checkbox">
-                    <label><input type="radio" name="mapname" value="{{map.name}}" class="mapbuttons"> {{map.name}}</label>
+                    <label><input type="radio" name="mapname" value="{{map.url}}" class="mapbuttons"> {{map.name}}</label>
                   </div>
                 {% endfor %}
                   <button type="button" id="changemap "class="btn btn-primary">Change</button>
@@ -51,8 +51,14 @@
     <script src="js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
+            var map = window.location.pathname.substring(1)
+            if(map===""){
+                $('input[type="radio"][value="past.html"]').prop( "checked", true );
+            }
+            $('input[type="radio"][value="'+map+'"]').prop( "checked", true );
+
             $('button').click(function() {
-                var filename = $('.mapbuttons:checked')[0].value + '.html';
+                var filename = $('.mapbuttons:checked')[0].value;
                 $('#map-div').empty();
                 location.href = filename;
             });

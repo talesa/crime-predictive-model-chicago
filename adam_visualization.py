@@ -19,9 +19,9 @@ crime_chicago = pd.read_pickle('crime_chicago_with_timestamp.pkl')
 
 # #### Binning
 
-# In[3]:
+# In[8]:
 
-number_of_bins = 40
+number_of_bins = 20
 no = number_of_bins
 
 lat_min = crime_chicago['Latitude'].min()
@@ -34,12 +34,12 @@ lat_step = lat_span / no
 lon_step = lon_span / no
 
 
-# In[4]:
+# In[9]:
 
 crime_chicago['bin'] =     no*np.floor((crime_chicago['Longitude']-lon_min)/lon_step) +        np.floor((crime_chicago['Latitude'] -lat_min)/lat_step)
 
 
-# In[5]:
+# In[10]:
 
 def getCornerLatLonForBin(bin_no):
     return (
@@ -48,7 +48,7 @@ def getCornerLatLonForBin(bin_no):
     )
 
 
-# In[6]:
+# In[11]:
 
 def getPolygonForBin(bin_no):
     lat, lon = getCornerLatLonForBin(bin_no)
@@ -60,7 +60,7 @@ def getPolygonForBin(bin_no):
         ])
 
 
-# In[7]:
+# In[12]:
 
 def getPolygonForBinReverse(bin_no):
     lat, lon = getCornerLatLonForBin(bin_no)
@@ -74,56 +74,57 @@ def getPolygonForBinReverse(bin_no):
 
 # #### Grouping
 
-# In[8]:
+# In[13]:
 
 crime_chicago_count = crime_chicago[['bin']].groupby(['bin']).size().reset_index().rename(columns={0:'count'})
 
 
 # #### Transforming to GeoDataFrame
 
-# In[9]:
+# In[14]:
 
 crime_chicago_count_gpd = None
 
 
-# In[10]:
+# In[15]:
 
 crime_chicago_count_gpd = gpd.GeoDataFrame(crime_chicago_count)
 
 
-# In[11]:
+# In[16]:
 
 crime_chicago_count_gpd.geometry = crime_chicago_count_gpd['bin']     .map(lambda x: getPolygonForBinReverse(x))
 
 
-# In[12]:
+# In[17]:
 
 max_count = crime_chicago_count_gpd['count'].max()
 crime_chicago_count_gpd['relative_count'] = crime_chicago_count_gpd['count']/max_count
 
 
-# In[13]:
+# In[37]:
 
-linear = cm.LinearColormap(['green','yellow','red'])
-linear
-
-
-# In[14]:
-
-crime_chicago_count_gpd['style'] = crime_chicago_count_gpd['relative_count']     .map(lambda x: {'fillColor' : linear(x), 'weight' : 0})
+scale = cm.LinearColormap(['green','yellow','red'])
+scale
 
 
-# In[15]:
+# In[42]:
 
-crime_chicago_count_gpd.head(1)
+scale = cm.LinearColormap(['green','yellow','red']).to_step(n=100, method='log')
+scale
 
 
-# In[16]:
+# In[43]:
+
+crime_chicago_count_gpd['style'] = crime_chicago_count_gpd['relative_count']     .map(lambda x: {'fillColor' : scale(x), 'weight' : 0})
+
+
+# In[40]:
 
 crime_chicago_count_gpd.crs = {'init': 'epsg:4326', 'no_defs': True}
 
 
-# In[17]:
+# In[44]:
 
 m = folium.Map([41.80,-87.75], zoom_start=11, tiles='cartodbpositron')
 

@@ -1,5 +1,10 @@
 {% extends "index.html" %}
 {% block content %}
-<h2>Our map</h2>
-{% include 'map.html' %}
+{% if current == 'past' %}
+    {% include 'past.html' %}
+{% endif %}
+{% if current == 'battery' %}
+    {% include 'battery.html' %}
+{% endif %}
+
 {% endblock content %}

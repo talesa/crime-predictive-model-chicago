@@ -9,3 +9,4 @@ bokeh
 folium
 seaborn
 geopandas
+flask

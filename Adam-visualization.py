@@ -8,7 +8,7 @@ import pandas as pd
 import geopandas as gpd
 import numpy as np
 import folium
-from shapely.geometry import Polygon, Point 
+from shapely.geometry import Polygon, Point
 import folium.colormap as cm
 
 
@@ -43,7 +43,7 @@ crime_chicago['bin'] =     no*np.floor((crime_chicago['Longitude']-lon_min)/lon_
 
 def getCornerLatLonForBin(bin_no):
     return (
-        lat_min + (bin_no % no)         *lat_step, 
+        lat_min + (bin_no % no)         *lat_step,
         lon_min + np.floor(bin_no / no) *lon_step
     )
 
@@ -130,7 +130,6 @@ m = folium.Map([41.80,-87.75], zoom_start=11, tiles='cartodbpositron')
 folium.GeoJson(crime_chicago_count_gpd).add_to(m)
 
 m
-
 
 # May be useful later
 

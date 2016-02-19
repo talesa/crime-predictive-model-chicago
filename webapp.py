@@ -10,7 +10,7 @@ def past_data():
     return render_template('showmap.html', title="Chicago crime map", maps=maps, current="past.html")
 
 @app.route('/tomorrow.html')
-def battery():
+def tomorrow_data():
     return render_template('showmap.html', title="Chicago crime map", maps=maps, current="tomorrow.html")
 
 if __name__ == '__main__':

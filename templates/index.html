@@ -30,7 +30,7 @@
           <div id='map-div' class="col-md-9" style="height: 550px;">{% block content %}{% endblock content %}</div>
           <div class="col-md-3 panel panel-default">
             <div class="panel-body">
-              <h5 class="panel-heading">
+              <h5>
                   Options
               </h5>
                {% if current == 'tomorrow.html' %}
@@ -55,12 +55,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            var map = window.location.pathname.substring(1)
-            /*if(map===""){
-                $('input[type="radio"][value="past.html"]').prop( "checked", true );
-            }
-            $('input[type="radio"][value="'+map+'"]').prop( "checked", true );
-            */
+
 
             $('button').click(function() {
                 console.log('as')

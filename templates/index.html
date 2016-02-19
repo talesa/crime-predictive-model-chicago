@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,17 +27,23 @@
 
     <span class="container map-container">
       <div class="row">
-          <div id='map-div' class="col-md-10" style="height: 550px;">{% block content %}{% endblock content %}</div>
-          <div class="col-md-2 panel panel-default">
+          <div id='map-div' class="col-md-9" style="height: 550px;">{% block content %}{% endblock content %}</div>
+          <div class="col-md-3 panel panel-default">
             <div class="panel-body">
-              <h5 class="panel-heading">Options</h5>
+              <h5 class="panel-heading">
+                  Options
+              </h5>
+               {% if current == 'tomorrow.html' %}
+                    <div>Temperature: {{ weather['temp']}}&deg;C</div>
+                    <div>Precipitations: {{ weather['rain']}} mm</div>
+               {% endif %}
               <form>
                 {% for map in maps %}
                   <div class="checkbox">
-                    <label><input type="radio" name="mapname" value="{{map.url}}" class="mapbuttons"> {{map.name}}</label>
+                    <button type="button" name="mapname" value="{{map.url}}" class="mapbuttons btn btn-primary"> {{map.name}}</button>
                   </div>
                 {% endfor %}
-                  <button type="button" id="changemap "class="btn btn-primary">Change</button>
+
               </form>
             </div>
           </div>
@@ -52,13 +58,15 @@
     <script>
         $(document).ready(function() {
             var map = window.location.pathname.substring(1)
-            if(map===""){
+            /*if(map===""){
                 $('input[type="radio"][value="past.html"]').prop( "checked", true );
             }
             $('input[type="radio"][value="'+map+'"]').prop( "checked", true );
+            */
 
             $('button').click(function() {
-                var filename = $('.mapbuttons:checked')[0].value;
+                console.log('as')
+                var filename = this.value;
                 $('#map-div').empty();
                 location.href = filename;
             });

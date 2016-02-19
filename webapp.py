@@ -1,5 +1,7 @@
 from flask import Flask, render_template
+import exploration.weather as weather
 
+tomorrow_weather = weather.fetch()
 app = Flask('crime')
 
 maps = [{'name': 'Historic data', 'url': 'past.html'}, {'name': 'Prediction on tomorrow\'s weather', 'url': 'tomorrow.html'}]
@@ -11,7 +13,7 @@ def past_data():
 
 @app.route('/tomorrow.html')
 def tomorrow_data():
-    return render_template('showmap.html', title="Chicago crime map", maps=maps, current="tomorrow.html")
+    return render_template('showmap.html', title="Chicago crime map", maps=maps, current="tomorrow.html", weather=tomorrow_weather)
 
 if __name__ == '__main__':
     app.run(debug=True)

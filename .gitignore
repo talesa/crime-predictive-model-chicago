@@ -71,6 +71,4 @@ venv
 #data files
 WeatherChicago20102016.csv
 Crimes_-_2001_to_present.csv
-crime_chicago_with_timestamp.pkl
-
 *.pkl

@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import exploration.weather as weather
-#import exploration.adam_prediction_bins
+#import exploration.adam_prediction_bins 
+#this would load the new weather data and update tomorrow's map, but the file needs to be exported from its notebook
 
 tomorrow_weather = weather.fetch()
 app = Flask('crime')

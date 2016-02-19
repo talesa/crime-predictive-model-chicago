@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import exploration.weather as weather
+#import exploration.adam_prediction_bins
 
 tomorrow_weather = weather.fetch()
 app = Flask('crime')

@@ -172,7 +172,7 @@ crime_chicago_count_weather.drop(crime_chicago_count_weather.index[indeces], inp
 len(crime_chicago_count_weather)
 
 
-# ## Trying to predict 
+# ## Prediction
 
 # In[50]:
 
@@ -225,24 +225,9 @@ from statsmodels.graphics.api import abline_plot
 y = crime_chicago_count_weather.loc[:,'count']
 
 
-# In[40]:
-
-len(y)
-
-
-# In[41]:
-
-len(yhat)
-
-
 # In[56]:
 
 yhat[:] = crime_chicago_count_weather['count'].mean()
-
-
-# In[57]:
-
-yhat
 
 
 # In[51]:
@@ -273,7 +258,5 @@ ax.set_ylabel('Observed values')
 ax.set_xlabel('Fitted values');
 
 
-# In[ ]:
-
-
-
+# - discuss dependence of crime on temperature
+# 

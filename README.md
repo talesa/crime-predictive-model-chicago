@@ -2,6 +2,7 @@
 #### Chicago crime predictive model
 
 This project has been developed for the [Smart Data Hack 2016](http://smartdatahack.org/) at the University of Edinburgh, 15-19 February 2016.
+
 Team: [Adam Golinski](http://adamgol.me/), [Lorenzo Martinico](https://github.com/lzmartinico), [Branislav Pilnan](https://github.com/brano2) and [Ondrej Bohdal](https://github.com/ondrejbohdal).
 
 ##### Setup
